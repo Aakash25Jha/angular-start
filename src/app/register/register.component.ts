@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-// import { NgIf } from '@angular/common';
+import { DataService } from '../data.service';
 declare var $: any;
 declare var require: any;
 
@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit
       emailPattern ='[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}';
       
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private _dataService: DataService) { }
 
   ngOnInit() {
   }
@@ -33,10 +33,20 @@ export class RegisterComponent implements OnInit
     //console.log(r)
     r.preventDefault();
     var flag = this.validationFunction(r);
-  
+
+    let data = {
+      firstname:r.target.elements[0].value,
+     lastname:r.target.elements[1].value,
+     username:r.target.elements[2].value,
+     password:r.target.elements[3].value,
+     emailId:r.target.elements[4].value,
+     phone:r.target.elements[5].value,
+    }
+  // console.log(data);
     if(flag==0)
     {
- 
+      this._dataService.saveUsers(data); 
+      
     this.router.navigate([''])
     console.log("sucessfull!");
     }

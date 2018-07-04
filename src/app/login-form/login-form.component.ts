@@ -22,13 +22,19 @@ export class LoginFormComponent implements OnInit {
     console.log(e);
     var username = e.target.elements[0].value;
     var password = e.target.elements[1].value;
-    return false;
+    if(username=="Aakash" && password=="jha")
+    {
+      this.router.navigate(['demo']);
+    }
+    else{
+        return false;
+    }
   }
 
   RegisterFunc(e)
   {
-    e.preventDefault();
-    this.router.navigate(['register']);
+    // e.preventDefault();
+    this.router.navigate(['/register']);
   }
 }
 

@@ -17,14 +17,40 @@ database: 'db_form',
 // });
 
 router.get('/users',(req, res) =>{
-    // con.connect(function(err){
-    //     if(err) throw err;
-    //     console.log(connect);
-    // });
     con.query("select * from registration" , function(err, result){
         if(err) throw err;
         response.data = result;
         res.json(response);
+        console.log(result);
+    });
+
+});
+
+router.post('/data', function(req, res){
+    console.log('here............');
+    //     res.send(JSON.stringify({
+    //         firstName: req.body.r.target.elements[0].value|| null,
+    //         lastName: req.body.r.target.elements[0].value|| null,
+    //         userName: req.body.r.target.elements[0].value|| null,
+    //         passworD: req.body.r.target.elements[0].value|| null,
+    //         EmailId: req.body.r.target.elements[0].value|| null,
+    //         phone: req.body.r.target.elements[0].value|| null,
+    // }));
+
+    Firstname = req.body.firstname;
+    Lastname = req.body.lastname;
+    Username = req.body.username;
+    Password = req.body.password;
+    EmailID = req.body.emailId;
+    Phone = req.body.phone;
+
+    console.log('..............' +Firstname);
+    var sql = "INSERT INTO registration (Firstname,Lastname,Username,Password,EmailID,Phone) VALUES ('firstName,lastName,userName,passworD,EmailId,phone')";
+    con.query(sql, function (err, result){
+        if(err) throw err;
+        // console.log("1 record inserted");
+        // response.data = result;
+        // res.json(response);
         console.log(result);
     });
 

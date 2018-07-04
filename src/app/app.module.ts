@@ -7,8 +7,10 @@ import { RegisterComponent } from './register/register.component';
 import { DemoComponent } from './demo/demo.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HttpModule } from '@angular/http';
+import { DataService } from './data.service';
 
-var appRoutes: Routes
+var appRoutes: Routes =
 [
     {
         path:'',
@@ -24,7 +26,7 @@ var appRoutes: Routes
         path: 'demo',
         component: DemoComponent
     }
-]
+];
 
 @NgModule({
   declarations: [
@@ -36,9 +38,9 @@ var appRoutes: Routes
   ],
   imports: [RouterModule.forRoot(appRoutes),
     BrowserModule,
-    FormsModule
+    FormsModule,HttpModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
