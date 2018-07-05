@@ -9,6 +9,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
+import {ReactiveFormsModule} from '@angular/forms';
 
 var appRoutes: Routes =
 [
@@ -38,7 +39,8 @@ var appRoutes: Routes =
   ],
   imports: [RouterModule.forRoot(appRoutes),
     BrowserModule,
-    FormsModule,HttpModule
+    FormsModule,HttpModule,
+    ReactiveFormsModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

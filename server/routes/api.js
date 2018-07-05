@@ -27,39 +27,38 @@ router.get('/users',(req, res) =>{
 });
 
 router.post('/data', function(req, res){
-    console.log('here............');
-    //     res.send(JSON.stringify({
-    //         firstName: req.body.r.target.elements[0].value|| null,
-    //         lastName: req.body.r.target.elements[0].value|| null,
-    //         userName: req.body.r.target.elements[0].value|| null,
-    //         passworD: req.body.r.target.elements[0].value|| null,
-    //         EmailId: req.body.r.target.elements[0].value|| null,
-    //         phone: req.body.r.target.elements[0].value|| null,
-    // }));
+    var Firstname = req.body.Firstname;
+    var Lastname = req.body.Lastname;
+    var Username = req.body.Username;
+    var Password = req.body.Password;
+    var EmailID = req.body.EmailID;
+    var Phone = req.body.Phone;
 
-    Firstname = req.body.firstname;
-    Lastname = req.body.lastname;
-    Username = req.body.username;
-    Password = req.body.password;
-    EmailID = req.body.emailId;
-    Phone = req.body.phone;
-
-    console.log('..............' +Firstname);
-    var sql = "INSERT INTO registration (Firstname,Lastname,Username,Password,EmailID,Phone) VALUES ('firstName,lastName,userName,passworD,EmailId,phone')";
-    con.query(sql, function (err, result){
+    var sql = "INSERT INTO registration (Firstname,Lastname,Username,Password,EmailID,Phone) VALUES (?,?,?,?,?,?)";
+    con.query(sql,[Firstname,Lastname,Username,Password,EmailID,Phone], function (err, result){
         if(err) throw err;
-        // console.log("1 record inserted");
-        // response.data = result;
-        // res.json(response);
-        console.log(result);
     });
 
 });
+
+router.post('/validate',function(req,res){
+    var Username= req.body.Username;
+    // console.log(req);
+    var Password= req.body.Password;
+    var sql="SELECT *  FROM registration WHERE Username=?" 
+    con.query(sql,[Username], function(err, result){
+        if(err) throw err;
+        response.data = result;
+        res.json(response);
+        // console.log(Password);
+    });
 
 let response = {
     status: 200,
     data: [],
     message: "successful!"
 };
-
+});
 module.exports = router;
+
+

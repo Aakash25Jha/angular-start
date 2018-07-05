@@ -1,70 +1,60 @@
-<html ng-app>
-<form (submit)="registerUser($event)" name="regU" #registerForm="ngForm" method="post" action="/">
-
-<div class="input">
-    <label>Firstname</label>
-      <input type="text" id='fname' onfocus="this.value=''" required [(ngModel)]="fname1" name='fname1' #fname="ngModel" minlength="3">
-        <div *ngIf="fname.invalid && (fname.dirty || fname.touched)" class="alert alert-danger">
-          <div *ngIf="fname.errors.required"> First Name is required.</div>
-          <div *ngIf="fname.errors.minlength">First name should be more than 3 alphabets </div>
-          <span id="fnameError"></span>    
-        </div>
-        </div> 
 
 
+<div class="container">
+  <h1>Registration Forms</h1>
+  <form [formGroup]="registrationForm" (ngSubmit)="submitRegistrationForm()" method="POST">
+      <div class="form-group">
+          <label class="center-block">First Name: </label>
+          <input class="form-control" formControlName="Firstname">
+          <small *ngIf="registrationForm.controls['Firstname'].invalid && (registrationForm.controls['Firstname'].dirty || registrationForm.controls['Firstname'].touched)" class="alert alert-danger">
+              First Name is required!
+          </small>
+      </div>
+      <br>
+      <div class="form-group">
+          <label class="center-block"> Last Name:
+              <input class="form-control" formControlName="Lastname">
+          </label>
+          <small *ngIf="registrationForm.controls['Lastname'].invalid && (registrationForm.controls['Lastname'].dirty || registrationForm.controls['Lastname'].touched)" class="alert alert-danger">
+                  Last Name is required!
+          </small>
+      </div><br>
+      <div class="form-group">
+          <label class="center-block">User Name:
+              <input class="form-control" formControlName="Username">
+          </label>
+          <small *ngIf="registrationForm.controls['Username'].invalid && (registrationForm.controls['Username'].dirty || registrationForm.controls['Username'].touched)" class="alert alert-danger">
+                  Username is required!
+          </small>
+      </div><br>
+      <div class="form-group">
+          <label class="center-block">EmailID:
+              <input class="form-control" formControlName="EmailID">
+          </label>
+          <small *ngIf="registrationForm.controls['EmailID'].invalid && (registrationForm.controls['EmailID'].dirty || registrationForm.controls['EmailID'].touched)" class="alert alert-danger">
+                  Email Id is required!
+          </small>
+      </div><br>
+      <div class="form-group">
+          <label class="center-block">Phone:
+              <input class="form-control" formControlName="Phone" type="number" maxlength="10" minlength="10">
+          </label>
+          <small *ngIf="registrationForm.controls['Phone'].invalid && (registrationForm.controls['Phone'].dirty || registrationForm.controls['Phone'].touched)" class="alert alert-danger">
+                  Phone Number is required!
+          </small>
+      </div>
 
-<div class="input">
-        <label>Lastname</label>
-         <input type="text" id='lname' onfocus="this.value=''" required  [(ngModel)]="lname1" name="lname1" #lname="ngModel" minlength="3">
-           <div *ngIf="lname.invalid && (lname.dirty || lname.touched)" class="alert alert-danger">
-           <div *ngIf="lname.errors.required">Last Name is required.</div>
-           <div *ngIf="lname.errors.minlength">Last name should be more than 3 alphabets</div>
-</div>
-</div>  
-
-<div class="input">
-        <label>Username</label>
-          <input type="text" id='uname' onfocus="this.value=''" required [(ngModel)]="uname1" name="uname1" #uname="ngModel">
-            <div *ngIf="uname.invalid && (uname.dirty || uname.touched)" class="alert alert-danger">
-            <div *ngIf="uname.errors.required">User Name is required.</div>
-            <div *ngIf="uname.errors.pattern">The password must contain.</div>
-            
-</div>
-<span id="unameError"> </span>
-</div>
-
-<div class="input">
-        <label>Password</label>
-          <input type="password" id='pwd' onfocus="this.value=''" required [(ngModel)]="pwd1" name="pwd1" #pwd="ngModel" [pattern]="pwdPattern">
-           <div *ngIf="pwd.invalid && (pwd.dirty || pwd.touched)" class="alert alert-danger">
-           <div *ngIf="pwd.errors.required"> Password is required.</div>
-           <div *ngIf="pwd.errors?.pattern"> error</div>
-</div>
-</div>        
-
-<div class="input">
-        <label>EmailID</label>
-          <input type="email" id='Eid' onfocus="this.value=''" required [(ngModel)]="emailid1" name="emailid1" #emailid="ngModel" [pattern]="emailPattern">
-            <div *ngIf="emailid.invalid && (emailid.dirty || emailid.touched)" class="alert alert-danger">
-            <div *ngIf="emailid.errors.required"> Email Id is required.</div>
-            <div *ngIf="emailid.errors?.pattern"> Email should contain @ and a valid domain.</div>
-</div>
-</div>
-
-<div class="input">
-        <label>Phone</label>
-         <input type="tel" id='phone' onfocus="this.value=''" required [(ngModel)]="phone1" name="phone1" #phone="ngModel" [pattern]="phonePattern">
-           <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
-           <div *ngIf="phone.errors.required"> Phone number is required.</div>
-           <div *ngIf="phone.errors?.pattern"> Phone number should be of 10 digits </div>
-</div>
-</div>
-
-
-<div class="input">
-<input type='submit' value="Register"> 
+      <div class="form-group">
+          <label class="center-block">Password:
+              <input class="form-control" formControlName="Password">
+          </label>
+          <small *ngIf="registrationForm.controls['Password'].invalid && (registrationForm.controls['Password'].dirty || registrationForm.controls['Password'].touched)" class="alert alert-danger">
+              Password is required!
+          </small>
+      </div>
+      <div class="form-action">
+          <button type="submit">Submit</button>
+      </div>
+  </form>
 
 </div>
-</form>
-</html>
-<!-- [disabled]='!registerForm.valid'> -->
